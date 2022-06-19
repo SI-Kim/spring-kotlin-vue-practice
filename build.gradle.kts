@@ -22,14 +22,18 @@ repositories {
 }
 
 dependencies {
-    implementation("org.springframework.boot:spring-boot-starter-web")
+    implementation("org.springframework.boot:spring-boot-starter-web") {
+        exclude(group = "org.springframework.boot", module = "spring-boot-starter-logging")
+    }
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    compileOnly("org.project-lombok:lombok")
+    implementation("org.projectlombok:lombok:1.18.22")
+    compileOnly("org.projectlombok:lombok")
     runtimeOnly("com.h2database:h2")
-    annotationProcessor("org.project-lombok:lombok")
+    annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("org.springframework.boot:spring-boot-starter-log4j2")
 }
 
 tasks.withType<KotlinCompile> {
